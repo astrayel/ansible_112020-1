@@ -1,2 +1,28 @@
 Doc Ansible :
 https://docs.ansible.com/
+
+Installation classique apt (sans se soucier de la version)
+$ sudo apt update
+$ sudo apt install ansible
+
+Test commande et version : 
+$ ansible --version
+
+
+Configuraton environnement Ansible : ansible.cfg
+$ ansible-config list
+$ ansible-config view ansible.cfg
+
+=> Poids du fichier : /etc/ansible, répertoire où l'on est positionné.
+
+
+-------------------------------
+## Fichier d'inventaire
+-------------------------------
+https://docs.ansible.com/ansible/2.3/intro_inventory.html
+https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+
+
+-------------------------------
+## Mode AD-Hoc
+-------------------------------
