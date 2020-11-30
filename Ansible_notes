@@ -49,3 +49,11 @@ Elevation de privilège :
 ## Langage YAML
 ----------------------------
 https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+
+
+----------------------------
+## Playbook Ansible
+----------------------------
+
+$ ansible-playbook
+$ ansible-playbook -i hosts premier_playbook.yml --syntax-check

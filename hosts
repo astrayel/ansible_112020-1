@@ -1,9 +1,19 @@
 manager  ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
-[linux]
+[linux:children]
+centos
+debian
+
+[debian]
 srv01  ansible_ssh_host=172.28.128.69 ansible_python_interpreter=/usr/bin/python3 
 srv02  ansible_ssh_host=172.28.128.70 ansible_python_interpreter=/usr/bin/python3
+
+[centos]
 srv03  ansible_ssh_host=172.28.128.71 ansible_python_interpreter=/usr/bin/python3
 
+[debian:vars]
+sudogrp=sudo
 
+[centos:vars]
+sudogrp=wheel
 

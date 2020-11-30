@@ -12,7 +12,8 @@
         name: formation
         state: present
         uid: 1002
-        group: sudo
+        # Utilisation d'une variable du fichier d'inventaire 
+        group: "{{ sudogrp }}"
 
     - name: "Creation d'un fichier"
       copy:
