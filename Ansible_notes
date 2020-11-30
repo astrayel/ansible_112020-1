@@ -26,6 +26,21 @@ https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 -------------------------------
 ## Mode AD-Hoc
 -------------------------------
-  Binaire ansible     fichier d'inventaire      utilisation d'un module ping        Target : public de nodes
-$    ansible              -i hosts                       -m ping                           all
-$    ansible              -i hosts                       -m ping                           srv01
+  Binaire ansible   fichier d'inventaire    utilisation d'un module ping     Target : public de nodes    Parametre du module
+$    ansible            -i hosts                     -m ping                       all
+$    ansible            -i hosts                     -m ping                       srv01
+$    ansible            -i hosts                     -m ping                       all                     -a "data=test"
+
+  Binaire ansible     fichier d'inventaire      utilisation mode raw              Target : public de nodes
+$    ansible              -i hosts                 -a "cat /etc/passwd"                    all
+
+  Binaire ansible   fichier d'inventaire    utilisation d'un module package     Target : public de nodes    Parametre du module
+$    ansible            -i hosts                     -m ping                       all
+$    ansible            -i hosts                     -m ping                       srv01
+$    ansible            -i hosts                     -m ping                       all                     -a "data=test"
+
+Lister les module 
+
+Elevation de privilège :
+--become
+--ask-become-pass
