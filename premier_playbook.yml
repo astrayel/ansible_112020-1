@@ -2,7 +2,7 @@
 
 - name: "PLAY 1 - demo playbook"
   # Target : à qui s'adresse se PLAY
-  hosts: all
+  hosts: linux
   become: true
 
   # Déclation du block tasks pour appeler des modules
@@ -12,6 +12,7 @@
         name: formation
         state: present
         uid: 1002
+        group: sudo
 
     - name: "Creation d'un fichier"
       copy:
