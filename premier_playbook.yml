@@ -15,11 +15,15 @@
   hosts: linux
   become: true
 
+  vars:
+    user: formation
+    key_status: present
+
   # Déclation du block tasks pour appeler des modules
   tasks:
     - name: "Ajout utilisateur"
       user:
-        name: formation
+        name: "{{ user }}"
         state: present
         uid: 1002
         # Utilisation d'une variable du fichier d'inventaire 
@@ -27,15 +31,15 @@
 
     - name: "Creation d'un fichier"
       copy:
-        dest: /home/formation/fichier1
+        dest: "/home/{{ user }}/fichier1"
         content: "Mon fichier généré par ansible"
-        owner: formation
-        group: formation
+        owner: "{{ user }}"
+        group: "{{ user }}"
         mode: '0644'
 
     - name: "Ajout de la clé ed25519 du manager"
       ansible.posix.authorized_key:
         user: formation
-        state: present
+        state: "{{ key_status }}"
         # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
         key: "{{ lookup('file', 'id_ansible.pub') }}"
