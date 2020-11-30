@@ -1,6 +1,16 @@
 ---
+- name: "PLAY 1 - Conformité manager"
+  hosts: manager
+ 
+  tasks:
+    - name: "Creation d'une paire de clés ssh sur manager"
+      community.crypto.openssh_keypair:
+        state: present
+        type: ed25519
+        path: id_ansible
+        comment: manager@formation
 
-- name: "PLAY 1 - demo playbook"
+- name: "PLAY 2 - config playbook"
   # Target : à qui s'adresse se PLAY
   hosts: linux
   become: true

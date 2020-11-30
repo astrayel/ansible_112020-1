@@ -16,6 +16,29 @@ $ ansible-config view ansible.cfg
 => Poids du fichier : /etc/ansible, répertoire où l'on est positionné.
 
 
+
+-------------------------------------
+## Installation Ansible en virtualenv
+-------------------------------------
+Prérequis : python3, python3-pip, python3-venv
+
+$ sudo apt install python3 python3-pip python3-venv
+
+Creation d'un virtualenv python3 pour notre projet ansible 
+$ python3 -m venv ansible_venv_2.10
+
+Activation du virtualenv 
+$ source ansible_venv_2.10/bin/activate
+
+Installation de la version ansible désirée
+$ pip3 install ansible==2.10
+
+
+
+
+
+
+
 -------------------------------
 ## Fichier d'inventaire
 -------------------------------
@@ -54,6 +77,7 @@ https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 ----------------------------
 ## Playbook Ansible
 ----------------------------
-
-$ ansible-playbook
+ 
+$ ansible-playbook -i hosts premier_playbook.yml
 $ ansible-playbook -i hosts premier_playbook.yml --syntax-check
+$ ansible-playbook -i hosts premier_playbook.yml --check
