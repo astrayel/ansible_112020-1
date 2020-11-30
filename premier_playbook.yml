@@ -1,0 +1,22 @@
+---
+
+- name: "PLAY 1 - demo playbook"
+  # Target : à qui s'adresse se PLAY
+  hosts: all
+  become: true
+
+  # Déclation du block tasks pour appeler des modules
+  tasks:
+    - name: "Ajout utilisateur"
+      user:
+        name: formation
+        state: present
+        uid: 1002
+
+    - name: "Creation d'un fichier"
+      copy:
+        dest: /home/formation/fichier1
+        content: "Mon fichier généré par ansible"
+        owner: formation
+        group: formation
+        mode: '0644'

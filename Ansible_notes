@@ -35,12 +35,17 @@ $    ansible            -i hosts                     -m ping                    
 $    ansible              -i hosts                 -a "cat /etc/passwd"                    all
 
   Binaire ansible   fichier d'inventaire    utilisation d'un module package     Target : public de nodes    Parametre du module
-$    ansible            -i hosts                     -m ping                       all
-$    ansible            -i hosts                     -m ping                       srv01
-$    ansible            -i hosts                     -m ping                       all                     -a "data=test"
+$    ansible            -i hosts                     -m package                       all                  -a "name=curl state=present"
 
 Lister les module 
 
 Elevation de privilège :
 --become
 --ask-become-pass
+
+
+
+----------------------------
+## Langage YAML
+----------------------------
+https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
