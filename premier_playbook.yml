@@ -32,3 +32,10 @@
         owner: formation
         group: formation
         mode: '0644'
+
+    - name: "Ajout de la clé ed25519 du manager"
+      ansible.posix.authorized_key:
+        user: formation
+        state: present
+        # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
+        key: "{{ lookup('file', 'id_ansible.pub') }}"
