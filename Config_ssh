@@ -1,0 +1,10 @@
+1°) Générer une paire de clés ssh sur le Ansible mgmt :
+vagrant ssh master.formation.lan
+==> ssh-kegen
+==> cat ~/.ssh/id_rsa.pub
+
+2°) Déployer la clé publique sur chaque noeud à administrer et pour le user vagrant
+Connexion sur chaque noeuds :
+vagrant ssh srv01.formation.lan
+=> vi .ssh/authorized_keys
+=> Coller la clé publique
