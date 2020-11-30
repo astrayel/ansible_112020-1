@@ -88,3 +88,11 @@ $ ansible-playbook -i hosts premier_playbook.yml
 $ ansible-playbook -i hosts premier_playbook.yml --syntax-check
 $ ansible-playbook -i hosts premier_playbook.yml --check
 
+Utilisation du paramètre : extra_vars (magic variable) : -e (Poids le plus fort de la variable)
+$ ansible-playbook -i hosts premier_playbook.yml -e key_status=absent
+
+Outils pour lister le périmètre du playbook
+$ ansible-playbook -i hosts premier_playbook.yml --list-hosts
+$ ansible-playbook -i hosts premier_playbook.yml --list-tasks
+
+Utilisation du paramètre --limit : application du playbook au node spécifié avec --limit
