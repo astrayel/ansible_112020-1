@@ -28,7 +28,7 @@
 
     - name: "Tentative d'installation python3 en raw"
       raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
-      #when: 
+      when: test_python3_output.rc != 0
     
 
 - name: "PLAY 2 - config playbook"
