@@ -11,3 +11,23 @@
     - name: "Recuperation fact memoire"
       ansible.builtin.debug:
         msg: "Memoire free : {{ ansible_facts.memory_mb.real.free }}"
+
+    - name: "creation d'un facts/variable"
+      ansible.builtin.set_fact:
+        memoire_free: "{{ ansible_facts['memory_mb']['real']['free'] }}"
+
+- name: "PLAY 2 - reutilisation de facts"
+  hosts: linux
+  gather_facts: false
+
+  tasks: 
+
+    - name: "Analyse memory_free"
+      debug:
+        var: memoire_free 
+   
+   
+    - name: "Appel facts"
+      fail:
+        msg: "KO - memoire free < 150"
+      when:  memoire_free is defined and memoire_free < "150"
