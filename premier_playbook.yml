@@ -29,9 +29,8 @@
   hosts: linux
   become: true
 
-  vars:
-    user: formation
-    key_status: present
+  vars_files:
+    - vars_premier_playbook.yml
 
   # Déclation du block tasks pour appeler des modules
   tasks:
