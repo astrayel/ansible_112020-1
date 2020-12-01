@@ -1,14 +1,46 @@
 ---
 - name: "PLAY - Installation et config OpenSSH server"
   hosts: linux
+  become: true
 
+  vars:
+    package_openssh: openssh-server
+
+  tasks:
   # 1 - s'assurer que openssh server soit installé
   # Module Package (light) => apt et yum (/!\ compatibilité distri)
+  - name: "Gestion du package ssh Debian family"
+    ansible.builtin.apt:
+      name: "{{ package_openssh }}"
+      update_cache: yes
+      state: present
+    when: ansible_os_family == "Debian"
+    
+  - name: "Gestion du package ssh RedHat family"
+    ansible.builtin.yum:
+      name: "{{ package_openssh }}"
+      state: present
+    when: ansible_os_family == "RedHat"
 
   # 2 - Vérifier la conf /etc/ssh/sshd_config
   # Module lineinfile +++
   # Module copy : copier un fichier statique commun à tous les nodes de la target du playbook
+  - name: Utilisation module lineinfile pour modifier une ligne d'un fichier texte
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      backup: yes
+      regexp: '^LogLevel'
+      line: '#LogLevel INFO'
+      # validate: /usr/sbin/sshd -t %s => non utilisable pour le test ssh
+    notify:
+      - restart_sshd
+
 
   # 3 - Redémarrer le service ssh
   # ==> uniquement si il y a un status change à la task 2 (notify => handlers)
-  # Module service (/!\ nom du service : ssh ou sshd (centos) )
+  # Module service (/!\ nom du service : sshd)
+  handlers:
+    - name: restart_sshd
+      service:
+        name: sshd
+        state: restarted

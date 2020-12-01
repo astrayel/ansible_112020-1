@@ -164,3 +164,8 @@ $ ansible-playbook --vault-id formation --ask-vault-pass demo_vault_playbook.yml
 
 Décryption : (préciser le fichier de password )
 $ ansible-playbook --vault-id .formation.secret --ask-vault-pass demo_vault_playbook.yml
+
+------------------------------
+## NOTIFY handlers
+------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html
