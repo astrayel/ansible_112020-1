@@ -50,25 +50,37 @@
         var: test_python3_output
         verbosity: 1
 
-    - name: "Ajout utilisateur"
-      user:
-        name: "{{ user }}"
+    - name: "Ajout groupes"
+      ansible.builtin.group:
+        name: "{{ item }}"
         state: present
-        uid: 1002
+      loop: "{{ users }}"
+
+    - name: "Ajout utilisateur"
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+        #uid: 1002
         # Utilisation d'une variable du fichier d'inventaire 
-        group: "{{ sudogrp }}"
+        groups: 
+          - "{{ sudogrp }}"
+          - "{{ item }}"
+      loop: "{{ users }}"
 
     - name: "Creation d'un fichier"
-      copy:
-        dest: "/home/{{ user }}/fichier1"
+      ansible.builtin.copy:
+        dest: "/home/{{ item }}/fichier1"
         content: "Mon fichier généré par ansible"
-        owner: "{{ user }}"
-        group: "{{ user }}"
+        owner: "{{ item }}"
+        group: "{{ item }}"
         mode: '0644'
+        state: present
+      loop: "{{ users }}"
 
     - name: "Ajout de la clé ed25519 du manager"
       ansible.posix.authorized_key:
-        user: formation
+        user: "{{ item }}"
         state: "{{ key_status }}"
         # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
         key: "{{ lookup('file', 'id_ansible.pub') }}"
+      loop: "{{ users }}"

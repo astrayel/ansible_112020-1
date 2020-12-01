@@ -1,2 +1,6 @@
-user: formation
+users: 
+ - formation
+ - appli
+ - sauvegarde
+
 key_status: present

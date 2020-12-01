@@ -108,3 +108,9 @@ On peut la désactivée avec : gather_facts: false
 Mode Ad-Hoc pour lister les facts d'un node :
 $ ansible all -m ansible.builtin.setup
 $ ansible all -m ansible.builtin.setup -a "filter=*distribution*"
+
+
+----------------------------------
+## LOOPS
+----------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
