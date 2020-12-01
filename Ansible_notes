@@ -113,4 +113,5 @@ $ ansible all -m ansible.builtin.setup -a "filter=*distribution*"
 ----------------------------------
 ## LOOPS
 ----------------------------------
+with_  => à partir d'ansible 2.5 : loop
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html

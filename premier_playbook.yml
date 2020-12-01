@@ -59,9 +59,10 @@
     - name: "Ajout utilisateur"
       ansible.builtin.user:
         name: "{{ item.key }}"
-        state: "{{ item.value.state }}"
-        uid: "{{ item.value.uid }}"
-        # Utilisation d'une variable du fichier d'inventaire 
+        state: "{{ item.value.state | default('present') }}"
+        uid: "{{ item.value.uid | default(omit) }}"
+        # Utilisation d'une variable du fichier d'inventaire
+        shell: "{{ item.value.shell | d('/bin/bash') }}"
         groups: 
           - "{{ sudogrp }}"
           - "{{ item.key }}"
