@@ -151,3 +151,8 @@ secret1: !vault |
 Encryption successful
 
 $ ansible-playbook demo_vault_playbook.yml  --ask-vault-password
+
+Encryption fichier :
+$ ansible-vault encrypt secret_file.yml
+$ ansible-vault view secret_file.yml
+$ ansible-vault decrypt secret_file.yml
