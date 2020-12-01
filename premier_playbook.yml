@@ -73,8 +73,8 @@
         groups:
           - "{{ sudogrp }}"
           - "{{ item.key }}"
-        password: "{{ item.value.password | d(omit)}}"
-        update_password: on_create
+        password: "{{ item.value.password | d(omit) }}"
+        update_password: "{{ password_strategy | default('on_create') }}"
       loop: "{{ users | dict2items }}"
       no_log: true
 
