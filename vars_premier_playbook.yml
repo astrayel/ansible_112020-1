@@ -1,6 +1,15 @@
 users: 
- - formation
- - appli
- - sauvegarde
+  formation:
+    state: present
+    shell: /bin/bash
+    uid: 1002 
+  appli:
+    state: present
+    shell: /bin/bash
+    uid: 1003
+  sauvegarde:
+    state: present
+    shell: /bin/bash
+    uid: 1004
 
 key_status: present

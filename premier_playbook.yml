@@ -52,35 +52,35 @@
 
     - name: "Ajout groupes"
       ansible.builtin.group:
-        name: "{{ item }}"
+        name: "{{ item.key }}"
         state: present
-      loop: "{{ users }}"
+      loop: "{{ users | dict2items }}"
 
     - name: "Ajout utilisateur"
       ansible.builtin.user:
-        name: "{{ item }}"
-        state: present
-        #uid: 1002
+        name: "{{ item.key }}"
+        state: "{{ item.value.state }}"
+        uid: "{{ item.value.uid }}"
         # Utilisation d'une variable du fichier d'inventaire 
         groups: 
           - "{{ sudogrp }}"
-          - "{{ item }}"
-      loop: "{{ users }}"
+          - "{{ item.key }}"
+      loop: "{{ users | dict2items }}"
 
     - name: "Creation d'un fichier"
       ansible.builtin.copy:
-        dest: "/home/{{ item }}/fichier1"
+        dest: "/home/{{ item.key}}/fichier1"
         content: "Mon fichier généré par ansible"
-        owner: "{{ item }}"
-        group: "{{ item }}"
+        owner: "{{ item.key }}"
+        group: "{{ item.key }}"
         mode: '0644'
         state: present
-      loop: "{{ users }}"
+      loop: "{{ users | dict2items }}"
 
     - name: "Ajout de la clé ed25519 du manager"
       ansible.posix.authorized_key:
-        user: "{{ item }}"
+        user: "{{ item.key }}"
         state: "{{ key_status }}"
         # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
         key: "{{ lookup('file', 'id_ansible.pub') }}"
-      loop: "{{ users }}"
+      loop: "{{ users | dict2items }}"
