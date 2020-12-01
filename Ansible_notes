@@ -126,3 +126,10 @@ $ ansible all -m ansible.builtin.setup -a "filter=*distribution*"
 ----------------------------------
 with_  => à partir d'ansible 2.5 : loop
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
+
+
+----------------------------------
+## PASSWORD : hash, encryption
+----------------------------------
+Générer un mot de passe hashé :
+$ ansible all -i localhost, -m debug -a "msg={{ 'formation123' | password_hash('sha512', 'password') }}"

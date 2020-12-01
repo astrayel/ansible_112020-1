@@ -61,6 +61,7 @@
         name: "{{ item.key }}"
         state: present
       loop: "{{ users | dict2items }}"
+      no_log: true
 
     - name: "Ajout utilisateur"
       ansible.builtin.user:
@@ -72,8 +73,10 @@
         groups:
           - "{{ sudogrp }}"
           - "{{ item.key }}"
-        password: "{{ item.value.password | d(omit) }}"
+        password: "{{ item.value.password | d(omit)}}"
+        update_password: on_create
       loop: "{{ users | dict2items }}"
+      no_log: true
 
     - name: "Creation d'un fichier"
       ansible.builtin.copy:
@@ -84,6 +87,7 @@
         mode: '0644'
         state: present
       loop: "{{ users | dict2items }}"
+      no_log: true
 
     - name: "Ajout de la clé ed25519 du manager"
       ansible.posix.authorized_key:
@@ -92,3 +96,4 @@
         # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
         key: "{{ lookup('file', 'id_ansible.pub') }}"
       loop: "{{ users | dict2items }}"
+      no_log: true

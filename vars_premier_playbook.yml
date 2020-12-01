@@ -3,7 +3,7 @@ users:
     state: present
     shell: /bin/bash
     uid: 1002
-    password: formation123
+    password: $6$password$TkVMCWHkfzzb4pb5gnmGzqOMx.tantCCsmT97EmCGHfe1BTrHAs4z70sMS95L5ivnye7GKZo6qg61Lb5I8mgt.
   appli:
     state: present
     shell: /bin/bash
