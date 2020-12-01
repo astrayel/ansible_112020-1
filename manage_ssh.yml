@@ -31,10 +31,12 @@
       backup: yes
       regexp: '^LogLevel'
       line: 'LogLevel INFO'
-      validate: /usr/sbin/sshd -tf %s
+      #validate: /usr/sbin/sshd -tf %s
       # validate: /usr/sbin/sshd -t %s => non utilisable pour le test ssh
-    notify:
-      - restart_sshd
+    #notify:
+      #- restart_sshd
+
+  # 2 bis : Intermédiaire de validation avant notify
 
 
   # 3 - Redémarrer le service ssh
