@@ -30,7 +30,8 @@
       path: /etc/ssh/sshd_config
       backup: yes
       regexp: '^LogLevel'
-      line: '#LogLevel INFO'
+      line: 'LogLevel INFO'
+      validate: /usr/sbin/sshd -tf %s
       # validate: /usr/sbin/sshd -t %s => non utilisable pour le test ssh
     notify:
       - restart_sshd
