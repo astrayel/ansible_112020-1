@@ -20,13 +20,12 @@
   hosts: linux
   gather_facts: false
 
-  tasks: 
+  tasks:
 
     - name: "Analyse memory_free"
       debug:
-        var: memoire_free 
-   
-   
+        var: memoire_free
+
     - name: "Appel facts"
       fail:
         msg: "KO - memoire free < 150"

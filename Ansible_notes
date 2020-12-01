@@ -35,6 +35,7 @@ $ pip3 install ansible==2.10
 
 Installation d'un linter ansible
 $ pip3 install ansible-lint
+$ ansible-lint playbook.yml
 
 Check version :
 ansible --version
@@ -42,6 +43,12 @@ ansible --version
 Quitter environnement :
 deactivate
 
+
+----------------------------------
+## GIT , HOOKS
+----------------------------------
+Association d'un lancement d'un script lors d'une opération GIT
+=> .git/hooks
 
 
 
