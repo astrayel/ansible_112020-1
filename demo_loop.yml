@@ -1,0 +1,51 @@
+---
+
+- name: "PLAY 1 - demo loop"
+  hosts: srv01
+
+  vars:
+    liste1:
+     - pierre
+     - patrick
+    liste2:
+     - rep1
+     - rep2
+     - rep3
+     - rep4
+
+    formation_ansible:
+      - status: formateur
+        membres:
+          - name: pierre
+            societe: dawan
+      - status: stagiaire
+        membres:
+          - name: patrick
+            societe: sigma
+          - name: Clement
+            societe: toulouse_metropole
+          - name: renaud
+            societe: inrs
+
+  tasks:
+    - name: "Nested loop"
+      ansible.builtin.debug:
+        msg: "{{ item.0 }} - {{ item.1 }}"
+      loop: "{{ liste1|product(liste2)|list }}"
+
+    - name: "Subelements loop"
+      ansible.builtin.debug:
+        msg: |
+             "Stagiaires:{{ item.1.name }}"
+             "société   : {{ item.1.societe }}"
+      loop: "{{ formation_ansible|subelements('membres') }}"
+      when: item.0.status == 'stagiaire'
+
+    - name: "with_random"
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_random_choice: "{{ liste2 }}"
+
+
+
+
