@@ -1,7 +1,7 @@
 ---
 - name: "PLAY 1 - Conformité manager"
   hosts: manager
- 
+
   tasks:
     - name: "Creation d'une paire de clés ssh sur manager"
       community.crypto.openssh_keypair:
@@ -16,22 +16,28 @@
   become: true
 
   tasks:
+    - name: "Test ping ansible"
+      ping: ~
+      register: ping_output
+      ignore_errors: true
+
     - name: "Mode raw pour test interpreteur python"
       raw: 'bash -c "test -f /usr/bin/python3"'
       ignore_errors: true
       register: test_python3_output
+      when: ping_output.failed == 'true'
 
     - name: "Module debug pour afficher du texte ou analyse un variable"
       ansible.builtin.debug:
          #msg: "Analyse output de test python3 : {{ test_python3_output }}"
          var: test_python3_output
          verbosity: 1
+      when: test_python3_output.rc is defined
 
     - name: "Tentative d'installation python3 en raw"
       raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
       # Conditionals
-      when: test_python3_output.rc != 0
-    
+      when: test_python3_output.rc is defined and test_python3_output.rc != 0
 
 - name: "PLAY 2 - config playbook"
   # Target : à qui s'adresse se PLAY
@@ -63,14 +69,14 @@
         uid: "{{ item.value.uid | default(omit) }}"
         # Utilisation d'une variable du fichier d'inventaire
         shell: "{{ item.value.shell | d('/bin/bash') }}"
-        groups: 
+        groups:
           - "{{ sudogrp }}"
           - "{{ item.key }}"
       loop: "{{ users | dict2items }}"
 
     - name: "Creation d'un fichier"
       ansible.builtin.copy:
-        dest: "/home/{{ item.key}}/fichier1"
+        dest: "/home/{{ item.key }}/fichier1"
         content: "Mon fichier généré par ansible"
         owner: "{{ item.key }}"
         group: "{{ item.key }}"

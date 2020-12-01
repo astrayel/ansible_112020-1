@@ -33,6 +33,9 @@ $ source /home/vagrant/ansible_venv_2.10/bin/activate
 Installation de la version ansible désirée
 $ pip3 install ansible==2.10
 
+Installation d'un linter ansible
+$ pip3 install ansible-lint
+
 Check version :
 ansible --version
 
