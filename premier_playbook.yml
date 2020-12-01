@@ -10,6 +10,20 @@
         path: id_ansible
         comment: manager@formation
 
+- name: "PLAY 2 - Bootstrap python"
+  hosts: linux
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: "Mode raw pour test interpreteur python"
+      raw: 'bash -c "test -f /usr/bin/python3"'
+      ignore_errors: true
+
+    - name: "Tentative d'installation python3 en raw"
+      raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
+    
+
 - name: "PLAY 2 - config playbook"
   # Target : à qui s'adresse se PLAY
   hosts: linux
