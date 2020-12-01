@@ -19,9 +19,16 @@
     - name: "Mode raw pour test interpreteur python"
       raw: 'bash -c "test -f /usr/bin/python3"'
       ignore_errors: true
+      register: test_python3_output
+
+    - name: "Module debug pour afficher du texte ou analyse un variable"
+      ansible.builtin.debug:
+         #msg: "Analyse output de test python3 : {{ test_python3_output }}"
+         var: test_python3_output
 
     - name: "Tentative d'installation python3 en raw"
       raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
+      #when: 
     
 
 - name: "PLAY 2 - config playbook"
