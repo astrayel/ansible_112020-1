@@ -29,6 +29,7 @@
 
     - name: "Tentative d'installation python3 en raw"
       raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
+      # Conditionals
       when: test_python3_output.rc != 0
     
 
@@ -42,6 +43,13 @@
 
   # Déclation du block tasks pour appeler des modules
   tasks:
+
+    - name: "Module debug pour afficher du texte ou analyse un variable du precedent PLAY"
+      ansible.builtin.debug:
+        #msg: "Analyse output de test python3 : {{ test_python3_output }}"
+        var: test_python3_output
+        verbosity: 1
+
     - name: "Ajout utilisateur"
       user:
         name: "{{ user }}"

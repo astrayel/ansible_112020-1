@@ -96,3 +96,15 @@ $ ansible-playbook -i hosts premier_playbook.yml --list-hosts
 $ ansible-playbook -i hosts premier_playbook.yml --list-tasks
 
 Utilisation du paramètre --limit : application du playbook au node spécifié avec --limit
+
+
+----------------------------------
+## Facts 
+----------------------------------
+Module setup
+Task créée par défaut au lancement d'un playbook
+On peut la désactivée avec : gather_facts: false
+
+Mode Ad-Hoc pour lister les facts d'un node :
+$ ansible all -m ansible.builtin.setup
+$ ansible all -m ansible.builtin.setup -a "filter=*distribution*"

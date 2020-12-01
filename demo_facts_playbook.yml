@@ -1,0 +1,13 @@
+---
+- name: " PLAY 1 - Utilisation des facts"
+  hosts: linux
+
+  tasks:
+
+    - name: "Module debug"
+      ansible.builtin.debug:
+        msg: "Ma distribution est : {{ ansible_facts.distribution }}"
+
+    - name: "Recuperation fact memoire"
+      ansible.builtin.debug:
+        msg: "Memoire free : {{ ansible_facts.memory_mb.real.free }}"
