@@ -129,7 +129,25 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
 
 
 ----------------------------------
-## PASSWORD : hash, encryption
+## PASSWORD : hash, encryption VAULT
 ----------------------------------
 Générer un mot de passe hashé :
 $ ansible all -i localhost, -m debug -a "msg={{ 'formation123' | password_hash('sha512', 'password') }}"
+
+Encrypter des données : VAULT 
+https://docs.ansible.com/ansible/latest/user_guide/vault.html
+$ ansible-vault
+
+$ ansible-vault encrypt_string -n secret1 "enormesecret"
+New Vault password: => mot de passe qui sert à encrypter et qui sera demandé pour décrypter
+Confirm New Vault password: 
+secret1: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          34633064343837333833326331336531643231623430336236356535393965336564656262663338
+          3761653061626639393062313635663864663631333734350a376366393834353232626230363565
+          31646633376138313236343036306461333737313131326233396134373132303639666137376262
+          3265303365363434300a333039653861313739306363646533323630396634353265306166303539
+          6335
+Encryption successful
+
+$ ansible-playbook demo_vault_playbook.yml  --ask-vault-password
