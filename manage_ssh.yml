@@ -1,0 +1,14 @@
+---
+- name: "PLAY - Installation et config OpenSSH server"
+  hosts: linux
+
+  # 1 - s'assurer que openssh server soit installé
+  # Module Package (light) => apt et yum (/!\ compatibilité distri)
+
+  # 2 - Vérifier la conf /etc/ssh/sshd_config
+  # Module lineinfile +++
+  # Module copy : copier un fichier statique commun à tous les nodes de la target du playbook
+
+  # 3 - Redémarrer le service ssh
+  # ==> uniquement si il y a un status change à la task 2 (notify => handlers)
+  # Module service (/!\ nom du service : ssh ou sshd (centos) )
