@@ -72,6 +72,7 @@
         groups:
           - "{{ sudogrp }}"
           - "{{ item.key }}"
+        password: "{{ item.value.password | d(omit) }}"
       loop: "{{ users | dict2items }}"
 
     - name: "Creation d'un fichier"

@@ -49,6 +49,7 @@ deactivate
 ----------------------------------
 Association d'un lancement d'un script lors d'une opération GIT
 => .git/hooks
+=> pre-commit
 
 
 
