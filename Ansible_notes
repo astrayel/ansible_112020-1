@@ -156,3 +156,11 @@ Encryption fichier :
 $ ansible-vault encrypt secret_file.yml
 $ ansible-vault view secret_file.yml
 $ ansible-vault decrypt secret_file.yml
+
+Vault-id :
+Config dans ansible.cfg puis : 
+Encryption avec un vault-id
+$ ansible-playbook --vault-id formation --ask-vault-pass demo_vault_playbook.yml 
+
+Décryption : (préciser le fichier de password )
+$ ansible-playbook --vault-id .formation.secret --ask-vault-pass demo_vault_playbook.yml
