@@ -12,46 +12,64 @@
     # Utiliser un block .... associer une condition à tout le block (when Debian)
     - name: "Declaration d'un block - Installation apache, configuration virtualhost et restart"
       block:
-      # Dans le block :
-      # 1 - gérer le package apache2
-      - name: "Installation package apache"
-        ansible.builtin.apt:
-          name: "{{ pkg_apache }}={{ pkg_apache_version }}"
-          update_cache: "{{ update_cache_policy | d('yes') }}"
-          state: present
-      # 2 - déployer un template de virtualhost :  /etc/apache2
-      - name: "Déploiement de la conf virtualhost"
-        template:
-          src: /vagrant/templates/mon_appli.conf.j2
-          dest: /etc/apache2/sites-available/{{ appli_name }}.conf
-          owner: root
-          group: root
-          mode: 0644
-      # 3 - Desactivation du virtualhost par défaut
-      - name: "Desactivation du virtualhost par defaut"
-        command: "a2dissite 000-default.conf"
-      # 3bis - Activation du virtualhost
-      - name: "Activation du virtualhost"
-        command: "a2ensite {{ appli_name }}"
-      # 4 - Creation arborescence du site
-      - name: "Creation de l'arborescence du site"
-        ansible.builtin.file:
-          path: "/var/www/{{ appli_name }}"
-          state: directory
-          owner: root
-          group: root
-          mode: 0755
-      # 5 - Dépose de l'index.html
-      - name: "Dépose du site index.html"
-        copy:
-          src: /vagrant/files/index.html
-          dest: "/var/www/{{ appli_name }}/index.html"
-          owner: root
-          group: root
-          mode: 0644
-      # 6 - Redemarrer le service apache2
-      - name: "Redémarrage du service apache"
-        service:
-          name: apache2
-          state: restarted
+        # Dans le block :
+        # 1 - gérer le package apache2
+        - name: "Installation package apache"
+          ansible.builtin.apt:
+            name: "{{ pkg_apache }}={{ pkg_apache_version }}"
+            update_cache: "{{ update_cache_policy | d('yes') }}"
+            state: present
+        # 2 - déployer un template de virtualhost :  /etc/apache2
+        - name: "Déploiement de la conf virtualhost"
+          template:
+            src: /vagrant/templates/mon_appli.conf.j2
+            dest: /etc/apache2/sites-available/{{ appli_name }}.conf
+            owner: root
+            group: root
+            mode: 0644
+        # 3 - Activation du virtualhost
+        - name: "Activation du virtualhost"
+          command: "a2ensite {{ appli_name }}"
+        # 4 - Test de la nouvelle conf
+        - name: "Check de la conf apache"
+          command: apache2ctl configtest
+        # 5 - Desactivation de la conf par défaut
+        - name: "Desactivation du virtualhost par defaut"
+          command: "a2dissite 000-default.conf"
+          notify:
+            - restart apache
+        # 6 - Creation arborescence du site
+        - name: "Creation de l'arborescence du site"
+          ansible.builtin.file:
+            path: "/var/www/{{ appli_name }}"
+            state: directory
+            owner: root
+            group: root
+            mode: 0755
+        # 5 - Dépose de l'index.html
+        - name: "Dépose du site index.html"
+          copy:
+            src: /vagrant/files/index.html
+            dest: "/var/www/{{ appli_name }}/index.html"
+            owner: root
+            group: root
+            mode: 0644
+            # Passage dans rescue
+      rescue:
+        - name: "Rollingback - restauration du virtualhost par défaut"
+          command: a2ensite 000-default
+        - name: "Rollingback - Suppression du virtualHost perso"
+          command: "a2dissite {{ appli_name }}"
+          notify:
+            - restart apache
       when: ansible_facts["os_family"] == 'Debian'
+
+  handlers:
+  # 6 - Redemarrer le service apache2
+  - name: restart apache
+    service:
+      name: apache2
+      state: restarted
+
+
+
