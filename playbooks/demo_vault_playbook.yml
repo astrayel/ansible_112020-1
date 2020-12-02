@@ -3,7 +3,7 @@
   hosts: srv01
 
   vars_files:
-    - ./vars/secret_file.yml
+    - /vagrant/vars/secret_file.yml
   vars:
     secret1: !vault |
           $ANSIBLE_VAULT;1.2;AES256;formation

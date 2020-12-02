@@ -45,7 +45,7 @@
   become: true
 
   vars_files:
-    - ./vars/vars_premier_playbook.yml
+    - /vagrant/vars/vars_premier_playbook.yml
 
   # Déclation du block tasks pour appeler des modules
   tasks:

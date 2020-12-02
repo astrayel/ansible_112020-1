@@ -62,6 +62,10 @@ Association d'un lancement d'un script lors d'une opération GIT
 https://docs.ansible.com/ansible/2.3/intro_inventory.html
 https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 
+Commandes utiles : ansible-inventory
+$ ansible-inventory --graph
+$ ansible-inventory --list
+
 
 -------------------------------
 ## Mode AD-Hoc

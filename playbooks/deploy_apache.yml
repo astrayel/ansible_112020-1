@@ -1,0 +1,3 @@
+---
+- name: "PLAY - Installation et configuration apache - Utilisation du mode block"
+  hosts: webservers
