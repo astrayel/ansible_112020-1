@@ -1,3 +1,57 @@
 ---
 - name: "PLAY - Installation et configuration apache - Utilisation du mode block"
   hosts: webservers
+  become: true
+ 
+  vars:
+    pkg_apache: apache2
+    pkg_apache_version: 2.4.29-1ubuntu4.14
+    appli_name: formation
+
+  tasks:
+    # Utiliser un block .... associer une condition à tout le block (when Debian)
+    - name: "Declaration d'un block - Installation apache, configuration virtualhost et restart"
+      block:
+      # Dans le block :
+      # 1 - gérer le package apache2
+      - name: "Installation package apache"
+        ansible.builtin.apt:
+          name: "{{ pkg_apache }}={{ pkg_apache_version }}"
+          update_cache: "{{ update_cache_policy | d('yes') }}"
+          state: present
+      # 2 - déployer un template de virtualhost :  /etc/apache2
+      - name: "Déploiement de la conf virtualhost"
+        template:
+          src: /vagrant/templates/mon_appli.conf.j2
+          dest: /etc/apache2/sites-available/{{ appli_name }}.conf
+          owner: root
+          group: root
+          mode: 0644
+      # 3 - Desactivation du virtualhost par défaut
+      - name: "Desactivation du virtualhost par defaut"
+        command: "a2dissite 000-default.conf"
+      # 3bis - Activation du virtualhost
+      - name: "Activation du virtualhost"
+        command: "a2ensite {{ appli_name }}"
+      # 4 - Creation arborescence du site
+      - name: "Creation de l'arborescence du site"
+        ansible.builtin.file:
+          path: "/var/www/{{ appli_name }}"
+          state: directory
+          owner: root
+          group: root
+          mode: 0755
+      # 5 - Dépose de l'index.html
+      - name: "Dépose du site index.html"
+        copy:
+          src: /vagrant/files/index.html
+          dest: "/var/www/{{ appli_name }}/index.html"
+          owner: root
+          group: root
+          mode: 0644
+      # 6 - Redemarrer le service apache2
+      - name: "Redémarrage du service apache"
+        service:
+          name: apache2
+          state: restarted
+      when: ansible_facts["os_family"] == 'Debian'

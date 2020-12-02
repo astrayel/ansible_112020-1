@@ -1,0 +1,8 @@
+<virtualHost *:80>
+  DocumentRoot /var/www/{{ appli_name }}
+  
+  Options -Indexes
+
+  ErrorLog /var/log/apache2/{{ appli_name }}.error.log
+  TransferLog /var/log/apache2/{{ appli_name }}.access.log
+</virtualHost>

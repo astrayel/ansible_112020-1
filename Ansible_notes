@@ -65,6 +65,7 @@ https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 Commandes utiles : ansible-inventory
 $ ansible-inventory --graph
 $ ansible-inventory --list
+$ ansible-inventory --list -y
 
 
 -------------------------------
@@ -180,3 +181,10 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html
 ---------------------------------------------
 => utilisation du module template :
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
+
+
+
+-------------------------------------
+## Mode BLOCK
+-------------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html
