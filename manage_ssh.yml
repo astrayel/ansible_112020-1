@@ -30,7 +30,7 @@
       path: /etc/ssh/sshd_config
       backup: yes
       regexp: '^LogLevel'
-      line: 'LogLevel bourde'
+      line: 'LogLevel INFO'
     register: output_lineinfile
       #validate: /usr/sbin/sshd -tf %s => BEST PRACTICE
       # validate: /usr/sbin/sshd -t %s => non utilisable pour le test ssh
@@ -45,6 +45,7 @@
       executable: /bin/bash
     register: output_shell
     ignore_errors: true
+    when: output_lineinfile.changed == true
 
   # 2.3 
   # obtenir le resultat de de 2 bis
@@ -60,7 +61,7 @@
     shell:
       cmd: "mv {{ output_lineinfile.backup }} /etc/ssh/sshd_config"
       executable: /bin/bash
-    when: output_shell.rc != 0
+    when: output_shell.rc is defined and output_shell.rc != 0
 
   # 2.5 : restart du service sshd si nécessaire
   - name: restart_sshd
