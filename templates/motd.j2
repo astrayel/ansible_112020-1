@@ -31,6 +31,14 @@ Interface manager: {{ node_variable }}
 
 # Concatenation
 {{ utilisateur + '@' + domaine }}
+{{ utilisateur }}@{{ domaine }}
+
+{# Commentaire jinja2 #}
+{% set mise_en_forme  = utilisateur|upper + '@' + domaine|upper %}
+{{ mise_en_forme }}
+
+# Mise en forme
+User MAJ : {{ utilisateur |upper }}
 
 
 
