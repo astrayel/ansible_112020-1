@@ -169,3 +169,10 @@ $ ansible-playbook --vault-id .formation.secret --ask-vault-pass demo_vault_play
 ## NOTIFY handlers
 ------------------------------
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_handlers.html
+
+
+---------------------------------------------
+## Fichiers dynamiques / Templates => JINJA
+---------------------------------------------
+=> utilisation du module template :
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html

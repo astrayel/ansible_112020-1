@@ -1,0 +1,18 @@
+---
+- name: "PLAY - gestion de fichier dynamiques : templates jinja2"
+  hosts: linux
+  become: true
+
+  vars:
+    email: psable@dawan.fr
+    template_src: ./templates/motd.j2
+    template_dest: /etc/motd
+
+  tasks:
+    - name: "Déploiement d'un template"
+      template:
+        src: "{{ template_src }}"
+        dest: "{{ template_dest }}"
+        owner: root
+        group: root
+        mode: 0644
