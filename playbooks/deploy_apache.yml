@@ -46,7 +46,7 @@
             owner: root
             group: root
             mode: 0755
-        # 5 - Dépose de l'index.html
+        # 7 - Dépose de l'index.html
         - name: "Dépose du site index.html"
           copy:
             src: /vagrant/files/index.html
@@ -65,11 +65,8 @@
       when: ansible_facts["os_family"] == 'Debian'
 
   handlers:
-  # 6 - Redemarrer le service apache2
+  # 8 - Redemarrer le service apache2
   - name: restart apache
     service:
       name: apache2
       state: restarted
-
-
-

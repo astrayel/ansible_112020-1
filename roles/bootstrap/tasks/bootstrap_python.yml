@@ -1,0 +1,19 @@
+- name : "Validation python"
+  block:
+    - name: Test ping ansible"
+      ping: ~
+  rescue:
+    - name: "Mode raw pour test interpreteur python"
+      raw: 'bash -c "test -f /usr/bin/python3"'
+      ignore_errors: true
+      register: test_python3_output
+    - name: "Tentative d'installation python3 en raw"
+      raw: 'bash -c "(apt-get update && apt-get install -y python3) || (yum install -y python3)"'
+      register: install_python_output
+      when: test_python3_output.rc is defined and test_python3_output.rc != 0
+  always:
+    - name: "Echec de la valitation prérequis python"
+      ansible.builtin.fail:
+        msg : Echec de validation ou installation des prérequis python
+      when: install_python_output.rc is defined and install_python_output.rc != 0
+  become: true

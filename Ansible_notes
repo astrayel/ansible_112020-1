@@ -188,3 +188,23 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_mod
 ## Mode BLOCK
 -------------------------------------
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html
+
+
+-------------------------------------
+## ROLES ANSIBLE : ANSIBLE GALAXY
+-------------------------------------
+
+Les rôle sont des unités de travail Ansible
+=> permettent d'exécuter des tâche de préférence unitaire
+=> Règles préconisées : indépendant
+                        idempotent
+                        testable
+                        réutilisable
+                        
+https://galaxy.ansible.com/
+
+Commande : ansible-galaxy
+
+1°) Creer notre structure de rôle et notre premier rôle
+$ mkdir roles
+$ ansible-galaxy init roles/bootstrap

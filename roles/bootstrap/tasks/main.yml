@@ -1,0 +1,5 @@
+---
+# tasks file for roles/bootstrap
+
+- name: Validation des prérequis python
+  include_tasks: bootstrap_python.yml

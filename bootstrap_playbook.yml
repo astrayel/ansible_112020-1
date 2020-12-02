@@ -1,0 +1,7 @@
+---
+- name: "PLAY - boostrap Linux"
+  hosts: linux
+  gather_facts: false
+
+  roles:
+    - bootstrap
