@@ -40,5 +40,8 @@ Interface manager: {{ node_variable }}
 # Mise en forme
 User MAJ : {{ utilisateur |upper }}
 
-
+{# Include de fichier template #}
+{% if ansible_facts['os_family'] == 'Debian' %}
+  {% include  ansible_facts['os_family'] + '.j2' %}
+{% endif %}
 
