@@ -30,20 +30,50 @@
       path: /etc/ssh/sshd_config
       backup: yes
       regexp: '^LogLevel'
-      line: 'LogLevel INFO'
-      #validate: /usr/sbin/sshd -tf %s
+      line: 'LogLevel bourde'
+    register: output_lineinfile
+      #validate: /usr/sbin/sshd -tf %s => BEST PRACTICE
       # validate: /usr/sbin/sshd -t %s => non utilisable pour le test ssh
     #notify:
       #- restart_sshd
 
   # 2 bis : Intermédiaire de validation avant notify
+  - name: Vérification de la config ssh si on ne peut utiliser validate"
+    # module command ou shell + register
+    shell:
+      cmd: /usr/sbin/sshd -t
+      executable: /bin/bash
+    register: output_shell
+    ignore_errors: true
 
+  # 2.3 
+  # obtenir le resultat de de 2 bis
+  # analyser - debug
+  - name: "Analyse des variables output_lineinfile et output_shell "
+    debug:
+      msg : "{{ output_shell }}  -- {{ output_lineinfile }}"
+      verbosity: 1
+
+  # 2.4 : declencher un rollback
+  # module command
+  - name: "Retour arriere en fonction du test de la config ssh"
+    shell:
+      cmd: "mv {{ output_lineinfile.backup }} /etc/ssh/sshd_config"
+      executable: /bin/bash
+    when: output_shell.rc != 0
+
+  # 2.5 : restart du service sshd si nécessaire
+  - name: restart_sshd
+    service:
+      name: sshd
+      state: restarted
+    when: output_lineinfile.changed == true and output_shell.rc == 0
 
   # 3 - Redémarrer le service ssh
   # ==> uniquement si il y a un status change à la task 2 (notify => handlers)
   # Module service (/!\ nom du service : sshd)
-  handlers:
-    - name: restart_sshd
-      service:
-        name: sshd
-        state: restarted
+  #handlers:
+  #  - name: restart_sshd
+  #    service:
+  #      name: sshd
+  #      state: restarted
