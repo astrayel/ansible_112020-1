@@ -1,4 +1,7 @@
 ---
+- name: "PLAY - recup facts manager"
+  hosts: manager
+
 - name: "PLAY - gestion de fichier dynamiques : templates jinja2"
   hosts: linux
   become: true
@@ -7,6 +10,8 @@
     email: psable@dawan.fr
     template_src: ./templates/motd.j2
     template_dest: /etc/motd
+    utilisateur : vagrant
+    domaine: dawan.fr
 
   tasks:
     - name: "Déploiement d'un template"

@@ -1,4 +1,36 @@
 {{ ansible_managed }}
 # Contact : {{ email }}
 
+# Utilisation de variables déclarées manuellement ( + omit et default)
+Variable de l'inventaire ou rien : {{ var1 | default }}
+Variable avec valeur par defaut  : {{ var1 | default('plouf') }}
+
+
+# Utilisation de facts pour s'adapter au contexte du node
+# Listing des interfaces
+{{ ansible_facts['interfaces'] }}
+
+# Boucle sur ansible_interface avec code jinja2
+{% for interface in ansible_facts['interfaces'] %}
+  {% if interface != 'lo' %}
+    IP {{ interface }} : {{ ansible_facts[ interface ]['ipv4']['address'] }}
+  {% endif %}
+{% endfor %}
+
+# Recherche d'un fact d'un node précis et l'enregistrer dans une variable
+{% set node_variable = hostvars['manager']['ansible_enp0s8']['ipv4']['address'] %}
+Interface manager: {{ node_variable }}
+
+
+# If / else
+{% if ansible_facts['os_family'] == 'Debian' %}
+  Serveur DEBIAN
+{% elif ansible_facts['os_family'] == 'RedHat' %}
+  Serveur REDHAT
+{% endif %}
+
+# Concatenation
+{{ utilisateur + '@' + domaine }}
+
+
 

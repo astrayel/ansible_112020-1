@@ -17,3 +17,6 @@ sudogrp=sudo
 [centos:vars]
 sudogrp=wheel
 key_status=absent
+var1="Serveurs Linux"
+
+[linux:vars]
