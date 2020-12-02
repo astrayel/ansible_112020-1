@@ -8,6 +8,12 @@
     dest_motd_file: /etc/motd
 
   tasks:
+
+    - name: "Module stat : analyse fichier / FS / répertoire"
+      ansible.builtin.stat:
+        path: "{{ dest_motd_file }}"
+      register: output_stat
+
     - name: "Module copy => manager vers nodes"
       ansible.builtin.copy:
         src: "{{ src_motd_file }}"
@@ -15,3 +21,4 @@
         owner: root
         group: root
         mode: 0644
+      when: output_stat.exists is defined and output_stat.exists is false
