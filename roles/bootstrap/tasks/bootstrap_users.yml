@@ -1,0 +1,50 @@
+- name: "Module debug pour afficher du texte ou analyse un variable du precedent PLAY"
+  ansible.builtin.debug:
+    #msg: "Analyse output de test python3 : {{ test_python3_output }}"
+    var: test_python3_output
+    verbosity: 1
+
+- name: "Ajout groupes"
+  ansible.builtin.group:
+    name: "{{ item.key }}"
+    state: present
+  loop: "{{ users | dict2items }}"
+  no_log: true
+
+- name: "Ajout utilisateur"
+  ansible.builtin.user:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('present') }}"
+    uid: "{{ item.value.uid | default(omit) }}"
+    # Utilisation d'une variable du fichier d'inventaire
+    shell: "{{ item.value.shell | d('/bin/bash') }}"
+    groups:
+      - "{{ sudogrp }}"
+      - "{{ item.key }}"
+    password: "{{ item.value.password | d(omit) }}"
+    update_password: "{{ password_strategy | default('on_create') }}"
+  loop: "{{ users | dict2items }}"
+  no_log: true
+  become: true
+
+- name: "Creation d'un fichier"
+  ansible.builtin.copy:
+    dest: "/home/{{ item.key }}/fichier1"
+    content: "Mon fichier généré par ansible"
+    owner: "{{ item.key }}"
+    group: "{{ item.key }}"
+    mode: '0644'
+    state: present
+  loop: "{{ users | dict2items }}"
+  no_log: true
+  become: true
+
+- name: "Ajout de la clé ed25519 du manager"
+  ansible.posix.authorized_key:
+    user: "{{ item.key }}"
+    state: "{{ key_status }}"
+    # lookup : cherche un objet de type file qui se nomme id_ansible.pub sur le manager
+    key: "{{ lookup('file', 'id_ansible.pub') }}"
+  loop: "{{ users | dict2items }}"
+  no_log: true
+  become: true

@@ -3,3 +3,6 @@
 
 - name: Validation des prérequis python
   include_tasks: bootstrap_python.yml
+
+- name: Déploiement des users
+  include_tasks: bootstrap_users.yml
