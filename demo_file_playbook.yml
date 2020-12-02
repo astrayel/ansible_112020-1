@@ -1,0 +1,17 @@
+---
+- name: "PLAY demo gestion de fichiers (statique)"
+  hosts: centos
+  become: true
+
+  vars:
+    src_motd_file: ./files/motd
+    dest_motd_file: /etc/motd
+
+  tasks:
+    - name: "Module copy => manager vers nodes"
+      ansible.builtin.copy:
+        src: "{{ src_motd_file }}"
+        dest: "{{ dest_motd_file }}"
+        owner: root
+        group: root
+        mode: 0644
