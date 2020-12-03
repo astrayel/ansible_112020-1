@@ -1,0 +1,45 @@
+---
+# tasks file for roles/docker_deploy
+#- name: Pull images
+#  community.general.docker_image:
+#    source: pull
+#    name: "{{ item.image_name }}"
+#    tag: "{{ item.version }}"
+#    state: "{{ item.state }}"
+#  loop: "{{ images_docker }}"
+#  when: images_docker is defined and images_docker|length > 0
+#
+#- name: Run containers
+#  docker_container:
+#    name: "{{ item.container_name }}"
+#    image: "{{ item.image_name }}"
+#    published_ports: "{{ item.published_port }}:{{ item.port }}"
+#  loop: "{{ containers_docker }}"
+#  when: images_docker is defined and images_docker|length > 0 and containers_docker is defined and containers_docker|length > 0
+
+
+# Autre tasks pour la structure
+## Récupère les images Docker
+- name: "Récupère les images Docker"
+  community.general.docker_image:
+    name: "{{ item.key }}"
+    tag: "{{ item.value.tag }}"
+    state: "{{ item.value.image_state }}"
+    source: "pull"
+  register: output_docker_image
+  loop: "{{ dockers | dict2items }}"
+  
+- name: "Debug"
+  debug:
+    msg: "{{ output_docker_image }}"
+  
+# Créé un container pour chaque image
+- name: "Créé un container pour chaque image"
+  community.general.docker_container:
+    name: "{{ item.value.container_name }}"
+    image: "{{ item.key }}:{{ item.value.tag }}"
+    state: "{{ item.value.container_state }}"
+    published_ports: "{{ item.value.published_ports | default(omit) }}"
+    container_default_behavior: compatibility
+    detach: true
+  loop: "{{ dockers | dict2items }}" 
