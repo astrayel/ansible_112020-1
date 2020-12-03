@@ -1,0 +1,6 @@
+- name: "PLAY - Déploiement images et conteneurs docker"
+  hosts: docker_host
+  become: true
+
+  roles:
+    - docker_deploy

@@ -1,0 +1,4 @@
+---
+# defaults file for roles/docker_deploy
+images_docker: []
+containers_docker: []

@@ -1,0 +1,35 @@
+#images_docker:
+#  - image_name: redis
+#    version: 'alpine'
+#    state: present
+#  - image_name: nginx
+#    version: '1.18'
+#    state: present
+#
+#containers_docker:
+#  - container_name: redis01
+#    image_name: redis:alpine
+#    state: present
+#    port: 6379
+#    published_port: 6379
+#  - container_name: nginx01
+#    image_name: nginx:1.18
+#    state: present
+#    port: 80
+#    published_port: 8081
+
+
+# Autre structure de données
+#Définition des images Docker à récupérer
+dockers:
+  alpine:
+    container_name: "my_alpine"
+    tag: "latest"
+    image_state: "present"
+    container_state: "started"
+  redis:
+    container_name: "my_redis"
+    tag: "6.0.9-alpine"
+    image_state: "present"
+    container_state: "started"
+    published_ports: 6379:6379
