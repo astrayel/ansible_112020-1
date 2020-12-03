@@ -214,3 +214,12 @@ $ ansible-galaxy init roles/bootstrap
 ## PRECEDENCE des VARIABLES (poids, surcharge)
 ----------------------------------------------
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
+
+
+
+----------------------------------------------
+## FACT_CACHING
+----------------------------------------------
+https://docs.ansible.com/ansible/latest/plugins/cache.html
+https://docs.ansible.com/ansible/2.5/plugins/cache.html
+https://docs.ansible.com/ansible/2.4/intro_configuration.html#gathering
