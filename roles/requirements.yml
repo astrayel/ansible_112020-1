@@ -5,6 +5,10 @@
   version: '2.9.0'
   name: geerlingguy.docker
 
+- src: 'geerlingguy.pip'
+  version: '2.0.0'
+  name: geerlingguy.pip
+
 
 ## ROLES INFRA PERSO
 
