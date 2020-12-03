@@ -6,6 +6,11 @@
   vars:
     appli_name: formation
     deploy_virtualhost: true
-    
+    #couleur: blue
+  
+  #pre_tasks:
+  #  - name: "appel module set_fact pour surcharger variable couleur"
+  #    set_fact:
+  #      couleur: brown
   roles:
     - apache_0.0.1

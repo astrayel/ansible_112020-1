@@ -23,3 +23,6 @@ key_status=absent
 var1="Serveurs Linux"
 
 [linux:vars]
+
+[webservers:vars]
+couleur=purple
