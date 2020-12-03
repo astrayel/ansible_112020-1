@@ -1,0 +1,14 @@
+---
+
+## ROLES GALAXY
+- src: 'geerlingguy.docker'
+  version: '2.9.0'
+  name: geerlingguy.docker
+
+
+## ROLES INFRA PERSO
+
+- src: 'https://github.com/psable/haproxy.git'
+  scm: git
+  version: 0.0.1
+  name: 'haproxy_0.0.1'

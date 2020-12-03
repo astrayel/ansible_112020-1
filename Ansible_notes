@@ -210,6 +210,10 @@ $ mkdir roles
 $ ansible-galaxy init roles/bootstrap
 
 
+Gérer les installations de rôles avec requirements.yml
+https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#install-multiple-collections-with-a-requirements-file
+
+
 ----------------------------------------------
 ## PRECEDENCE des VARIABLES (poids, surcharge)
 ----------------------------------------------
@@ -223,3 +227,6 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#vari
 https://docs.ansible.com/ansible/latest/plugins/cache.html
 https://docs.ansible.com/ansible/2.5/plugins/cache.html
 https://docs.ansible.com/ansible/2.4/intro_configuration.html#gathering
+
+
+-------------------------------------------------
