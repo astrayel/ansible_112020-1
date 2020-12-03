@@ -1,0 +1,22 @@
+global
+  daemon
+  maxconn 256
+
+defaults
+  mode http
+  timeout connect 5000ms 
+  timeout client 50000ms
+  timeout server 50000ms
+
+
+listen cluster
+  bind {{ ansible_facts[_interfaceip]['ipv4']['address'] }}:80
+  mode http
+  stats enable
+  balance roundrobin
+{# Utilisation de groups['nom_groupe_inventaire'] pour recuperer les nodes d'un groupe et traitement des elements du groupe dans la boucle for #} 
+{% for _webserver in groups[grp_web] %}
+{# Pour chaque nodes du groupe, recuperation des facts specifiques #}
+  server {{ hostvars[_webserver]['ansible_facts']['hostname'] }}  {{ hostvars[_webserver]['ansible_facts']['enp0s8']['ipv4']['address'] }} check port 80
+{% endfor %}
+option httpchk HEAD /index.html HTTP/1.0

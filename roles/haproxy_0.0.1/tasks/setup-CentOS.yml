@@ -1,0 +1,4 @@
+- name: Installation haproxy
+  ansible.builtin.yum:
+    name: "{{ haproxy_pkg }}"
+    state: present

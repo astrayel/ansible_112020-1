@@ -1,0 +1,9 @@
+---
+# tasks file for roles/haproxy_0.0.1
+- name: Installation du package haproxy
+  include_tasks: setup-CentOS.yml
+  when: ansible_distribution == 'CentOS'
+
+- name: Configuration haproxy
+  include_tasks: config-CentOS.yml
+  when: ansible_distribution == 'CentOS'

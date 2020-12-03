@@ -7,6 +7,9 @@ debian
 [webservers:children]
 debian
 
+[haproxy]
+srv03
+
 [debian]
 srv01  ansible_ssh_host=172.28.128.69 ansible_python_interpreter=/usr/bin/python3 
 srv02  ansible_ssh_host=172.28.128.70 ansible_python_interpreter=/usr/bin/python3

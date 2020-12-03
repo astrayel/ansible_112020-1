@@ -14,3 +14,10 @@
   #      couleur: brown
   roles:
     - apache_0.0.1
+
+- name: "PLAY - deploiement haproxy"
+  hosts: haproxy
+  become: true
+
+  roles:
+    - haproxy_0.0.1
