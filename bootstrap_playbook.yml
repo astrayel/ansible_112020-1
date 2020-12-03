@@ -4,4 +4,4 @@
   gather_facts: false
 
   roles:
-    - bootstrap
+    - { role: bootstrap, become: true }

@@ -11,8 +11,8 @@ users:
     shell: /bin/bash
     uid: 1003
   sauvegarde:
-    #state: present
-    #shell: /bin/bash
-    #uid: 1004
+    state: present
+    shell: /bin/bash
+    uid: 1004
 
 key_status: present
