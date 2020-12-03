@@ -7,5 +7,27 @@
       - name: docker
 
   roles:
-    - geerlingguy.pip
+    - role: geerlingguy.pip
+      tags:
+        - role::pip
+
     - geerlingguy.docker
+
+  tasks:
+    - name: Utilisation du module docker_image
+      community.general.docker_image:
+        name: nginx
+        source: pull
+      tags:
+        - docker_image
+        - docker_commun
+
+    - name: Utilisation du module docker_container
+      community.general.docker_container:
+        name: nginx
+        published_ports: 8080:80
+        image: nginx
+        state: started
+      tags:
+        - docker_container
+        - docker_commun

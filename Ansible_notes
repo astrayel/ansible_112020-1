@@ -230,3 +230,18 @@ https://docs.ansible.com/ansible/2.4/intro_configuration.html#gathering
 
 
 -------------------------------------------------
+## ANSIBLE TAGS
+-------------------------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+
+Lister les tags : 
+$ ansible-playbook docker_playbook.yml --list-tasks
+
+Lancer un playbook en utilisant les tags (seules les tasks, role...) disposant du tag sont exécutées
+$ ansible-playbook docker_playbook.yml --tags docker_image,docker_container
+
+Exécuter toutes les tasks tagguées:
+$ ansible-playbook docker_playbook.yml --tags tagged
+
+Ignorer un tag : 
+$ ansible-playbook docker_playbook.yml --tags docker_commun --skip-tags docker_image

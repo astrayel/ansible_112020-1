@@ -2,11 +2,14 @@
     "_ansible_facts_gathered": true,
     "ansible_all_ipv4_addresses": [
         "10.0.2.15",
-        "172.28.128.69"
+        "172.28.128.69",
+        "172.17.0.1"
     ],
     "ansible_all_ipv6_addresses": [
         "fe80::8a:e8ff:fe1b:bbfd",
-        "fe80::a00:27ff:fe1f:fbc1"
+        "fe80::a00:27ff:fe1f:fbc1",
+        "fe80::42:feff:fe4b:a15c",
+        "fe80::a8c4:83ff:fef6:53a2"
     ],
     "ansible_apparmor": {
         "status": "enabled"
@@ -33,16 +36,16 @@
     "ansible_date_time": {
         "date": "2020-12-03",
         "day": "03",
-        "epoch": "1607001835",
-        "hour": "13",
-        "iso8601": "2020-12-03T13:23:55Z",
-        "iso8601_basic": "20201203T132355976267",
-        "iso8601_basic_short": "20201203T132355",
-        "iso8601_micro": "2020-12-03T13:23:55.976267Z",
-        "minute": "23",
+        "epoch": "1607004402",
+        "hour": "14",
+        "iso8601": "2020-12-03T14:06:42Z",
+        "iso8601_basic": "20201203T140642442729",
+        "iso8601_basic_short": "20201203T140642",
+        "iso8601_micro": "2020-12-03T14:06:42.442729Z",
+        "minute": "06",
         "month": "12",
-        "second": "55",
-        "time": "13:23:55",
+        "second": "42",
+        "time": "14:06:42",
         "tz": "UTC",
         "tz_offset": "+0000",
         "weekday": "Thursday",
@@ -353,6 +356,91 @@
             "edns0": true
         }
     },
+    "ansible_docker0": {
+        "active": true,
+        "device": "docker0",
+        "features": {
+            "esp_hw_offload": "off [fixed]",
+            "esp_tx_csum_hw_offload": "off [fixed]",
+            "fcoe_mtu": "off [fixed]",
+            "generic_receive_offload": "on",
+            "generic_segmentation_offload": "on",
+            "highdma": "on",
+            "hw_tc_offload": "off [fixed]",
+            "l2_fwd_offload": "off [fixed]",
+            "large_receive_offload": "off [fixed]",
+            "loopback": "off [fixed]",
+            "netns_local": "on [fixed]",
+            "ntuple_filters": "off [fixed]",
+            "receive_hashing": "off [fixed]",
+            "rx_all": "off [fixed]",
+            "rx_checksumming": "off [fixed]",
+            "rx_fcs": "off [fixed]",
+            "rx_udp_tunnel_port_offload": "off [fixed]",
+            "rx_vlan_filter": "off [fixed]",
+            "rx_vlan_offload": "off [fixed]",
+            "rx_vlan_stag_filter": "off [fixed]",
+            "rx_vlan_stag_hw_parse": "off [fixed]",
+            "scatter_gather": "on",
+            "tcp_segmentation_offload": "on",
+            "tx_checksum_fcoe_crc": "off [fixed]",
+            "tx_checksum_ip_generic": "on",
+            "tx_checksum_ipv4": "off [fixed]",
+            "tx_checksum_ipv6": "off [fixed]",
+            "tx_checksum_sctp": "off [fixed]",
+            "tx_checksumming": "on",
+            "tx_esp_segmentation": "on",
+            "tx_fcoe_segmentation": "off [requested on]",
+            "tx_gre_csum_segmentation": "on",
+            "tx_gre_segmentation": "on",
+            "tx_gso_partial": "on",
+            "tx_gso_robust": "off [requested on]",
+            "tx_ipxip4_segmentation": "on",
+            "tx_ipxip6_segmentation": "on",
+            "tx_lockless": "on [fixed]",
+            "tx_nocache_copy": "off",
+            "tx_scatter_gather": "on",
+            "tx_scatter_gather_fraglist": "on",
+            "tx_sctp_segmentation": "on",
+            "tx_tcp6_segmentation": "on",
+            "tx_tcp_ecn_segmentation": "on",
+            "tx_tcp_mangleid_segmentation": "on",
+            "tx_tcp_segmentation": "on",
+            "tx_udp_tnl_csum_segmentation": "on",
+            "tx_udp_tnl_segmentation": "on",
+            "tx_vlan_offload": "on",
+            "tx_vlan_stag_hw_insert": "on",
+            "udp_fragmentation_offload": "off",
+            "vlan_challenged": "off [fixed]"
+        },
+        "hw_timestamp_filters": [],
+        "id": "8000.0242fe4ba15c",
+        "interfaces": [
+            "veth1dfb4bb"
+        ],
+        "ipv4": {
+            "address": "172.17.0.1",
+            "broadcast": "172.17.255.255",
+            "netmask": "255.255.0.0",
+            "network": "172.17.0.0"
+        },
+        "ipv6": [
+            {
+                "address": "fe80::42:feff:fe4b:a15c",
+                "prefix": "64",
+                "scope": "link"
+            }
+        ],
+        "macaddress": "02:42:fe:4b:a1:5c",
+        "mtu": 1500,
+        "promisc": false,
+        "stp": false,
+        "timestamping": [
+            "rx_software",
+            "software"
+        ],
+        "type": "bridge"
+    },
     "ansible_domain": "formation.lan",
     "ansible_effective_group_id": 0,
     "ansible_effective_user_id": 0,
@@ -532,7 +620,7 @@
         "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin",
         "PWD": "/home/vagrant",
         "SHELL": "/bin/bash",
-        "SUDO_COMMAND": "/bin/sh -c echo BECOME-SUCCESS-zsukrohsbygsqrkjztqetkqcdywtzmeq ; /usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1607001835.2828193-15682-225277964196255/AnsiballZ_setup.py",
+        "SUDO_COMMAND": "/bin/sh -c echo BECOME-SUCCESS-tiuhyxektqvxqsxvejwsxryvpxbczuda ; /usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1607004401.3197062-16196-223950106969798/AnsiballZ_setup.py",
         "SUDO_GID": "1000",
         "SUDO_UID": "1000",
         "SUDO_USER": "vagrant",
@@ -547,8 +635,10 @@
     "ansible_hostname": "srv01",
     "ansible_hostnqn": "",
     "ansible_interfaces": [
-        "enp0s8",
         "lo",
+        "enp0s8",
+        "docker0",
+        "veth1dfb4bb",
         "enp0s3"
     ],
     "ansible_is_chroot": false,
@@ -650,16 +740,16 @@
     },
     "ansible_machine": "x86_64",
     "ansible_machine_id": "8ae6dfd1e30247349c7dadc07d574e89",
-    "ansible_memfree_mb": 304,
+    "ansible_memfree_mb": 249,
     "ansible_memory_mb": {
         "nocache": {
-            "free": 801,
-            "used": 184
+            "free": 732,
+            "used": 253
         },
         "real": {
-            "free": 304,
+            "free": 249,
             "total": 985,
-            "used": 681
+            "used": 736
         },
         "swap": {
             "cached": 0,
@@ -671,18 +761,18 @@
     "ansible_memtotal_mb": 985,
     "ansible_mounts": [
         {
-            "block_available": 2085620,
+            "block_available": 1830798,
             "block_size": 4096,
             "block_total": 2524608,
-            "block_used": 438988,
+            "block_used": 693810,
             "device": "/dev/sda1",
             "fstype": "ext4",
-            "inode_available": 1150410,
+            "inode_available": 1136308,
             "inode_total": 1280000,
-            "inode_used": 129590,
+            "inode_used": 143692,
             "mount": "/",
             "options": "rw,relatime,data=ordered",
-            "size_available": 8542699520,
+            "size_available": 7498948608,
             "size_total": 10340794368,
             "uuid": "5a482104-e6be-44b1-bc0e-80ded94432fc"
         }
@@ -793,7 +883,7 @@
     ],
     "ansible_system_capabilities_enforced": "True",
     "ansible_system_vendor": "innotek GmbH",
-    "ansible_uptime_seconds": 18607,
+    "ansible_uptime_seconds": 21173,
     "ansible_user_dir": "/root",
     "ansible_user_gecos": "root",
     "ansible_user_gid": 0,
@@ -802,8 +892,309 @@
     "ansible_user_uid": 0,
     "ansible_userspace_architecture": "x86_64",
     "ansible_userspace_bits": "64",
+    "ansible_veth1dfb4bb": {
+        "active": true,
+        "device": "veth1dfb4bb",
+        "features": {
+            "esp_hw_offload": "off [fixed]",
+            "esp_tx_csum_hw_offload": "off [fixed]",
+            "fcoe_mtu": "off [fixed]",
+            "generic_receive_offload": "on",
+            "generic_segmentation_offload": "on",
+            "highdma": "on",
+            "hw_tc_offload": "off [fixed]",
+            "l2_fwd_offload": "off [fixed]",
+            "large_receive_offload": "off [fixed]",
+            "loopback": "off [fixed]",
+            "netns_local": "off [fixed]",
+            "ntuple_filters": "off [fixed]",
+            "receive_hashing": "off [fixed]",
+            "rx_all": "off [fixed]",
+            "rx_checksumming": "on",
+            "rx_fcs": "off [fixed]",
+            "rx_udp_tunnel_port_offload": "off [fixed]",
+            "rx_vlan_filter": "off [fixed]",
+            "rx_vlan_offload": "on",
+            "rx_vlan_stag_filter": "off [fixed]",
+            "rx_vlan_stag_hw_parse": "on",
+            "scatter_gather": "on",
+            "tcp_segmentation_offload": "on",
+            "tx_checksum_fcoe_crc": "off [fixed]",
+            "tx_checksum_ip_generic": "on",
+            "tx_checksum_ipv4": "off [fixed]",
+            "tx_checksum_ipv6": "off [fixed]",
+            "tx_checksum_sctp": "on",
+            "tx_checksumming": "on",
+            "tx_esp_segmentation": "off [fixed]",
+            "tx_fcoe_segmentation": "off [fixed]",
+            "tx_gre_csum_segmentation": "on",
+            "tx_gre_segmentation": "on",
+            "tx_gso_partial": "off [fixed]",
+            "tx_gso_robust": "off [fixed]",
+            "tx_ipxip4_segmentation": "on",
+            "tx_ipxip6_segmentation": "on",
+            "tx_lockless": "on [fixed]",
+            "tx_nocache_copy": "off",
+            "tx_scatter_gather": "on",
+            "tx_scatter_gather_fraglist": "on",
+            "tx_sctp_segmentation": "on",
+            "tx_tcp6_segmentation": "on",
+            "tx_tcp_ecn_segmentation": "on",
+            "tx_tcp_mangleid_segmentation": "on",
+            "tx_tcp_segmentation": "on",
+            "tx_udp_tnl_csum_segmentation": "on",
+            "tx_udp_tnl_segmentation": "on",
+            "tx_vlan_offload": "on",
+            "tx_vlan_stag_hw_insert": "on",
+            "udp_fragmentation_offload": "off",
+            "vlan_challenged": "off [fixed]"
+        },
+        "hw_timestamp_filters": [],
+        "ipv6": [
+            {
+                "address": "fe80::a8c4:83ff:fef6:53a2",
+                "prefix": "64",
+                "scope": "link"
+            }
+        ],
+        "macaddress": "aa:c4:83:f6:53:a2",
+        "mtu": 1500,
+        "promisc": true,
+        "speed": 10000,
+        "timestamping": [
+            "rx_software",
+            "software"
+        ],
+        "type": "ether"
+    },
     "ansible_virtualization_role": "guest",
     "ansible_virtualization_type": "virtualbox",
+    "docker_container": {
+        "AppArmorProfile": "docker-default",
+        "Args": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "Config": {
+            "AttachStderr": false,
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "Cmd": [
+                "nginx",
+                "-g",
+                "daemon off;"
+            ],
+            "Domainname": "",
+            "Entrypoint": [
+                "/docker-entrypoint.sh"
+            ],
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.19.5",
+                "NJS_VERSION=0.4.4",
+                "PKG_RELEASE=1~buster"
+            ],
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Hostname": "dc810f82fafd",
+            "Image": "nginx",
+            "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+            },
+            "OnBuild": null,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "StopSignal": "SIGQUIT",
+            "Tty": false,
+            "User": "",
+            "Volumes": null,
+            "WorkingDir": ""
+        },
+        "Created": "2020-12-03T14:01:49.822978428Z",
+        "Driver": "overlay2",
+        "ExecIDs": null,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/6d5a9ab094e860148780a5ed101cc99be9627083170b81917b75ff17f5290fe7-init/diff:/var/lib/docker/overlay2/19eea121d596e45e4e18e1895bd4c6ded2a90edf1410dacbc229f74ab2d517df/diff:/var/lib/docker/overlay2/b249126594b0995ee1c2a72e7b48d12a4c9242531cf5527f56278237bc771fcd/diff:/var/lib/docker/overlay2/351f3d4220e23af155338bc476395b6ef5bd2708e38a18d752b481709885f5e1/diff:/var/lib/docker/overlay2/e6343a2f0668249c242c3154a41eecc0087504a59d1497ed8c9641c73c5106ce/diff:/var/lib/docker/overlay2/97e693cd45bf3347a64836228ec172065a211e04101683a11378718f1c0af9da/diff",
+                "MergedDir": "/var/lib/docker/overlay2/6d5a9ab094e860148780a5ed101cc99be9627083170b81917b75ff17f5290fe7/merged",
+                "UpperDir": "/var/lib/docker/overlay2/6d5a9ab094e860148780a5ed101cc99be9627083170b81917b75ff17f5290fe7/diff",
+                "WorkDir": "/var/lib/docker/overlay2/6d5a9ab094e860148780a5ed101cc99be9627083170b81917b75ff17f5290fe7/work"
+            },
+            "Name": "overlay2"
+        },
+        "HostConfig": {
+            "AutoRemove": false,
+            "Binds": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceWriteIOps": null,
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Capabilities": null,
+            "Cgroup": "",
+            "CgroupParent": "",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "ContainerIDFile": "",
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpuShares": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "Devices": null,
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IOMaximumBandwidth": 0,
+            "IOMaximumIOps": 0,
+            "Init": false,
+            "IpcMode": "private",
+            "Isolation": "",
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "Links": null,
+            "LogConfig": {
+                "Config": {},
+                "Type": "json-file"
+            },
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "Memory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "NanoCpus": 0,
+            "NetworkMode": "default",
+            "OomKillDisable": false,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "PidsLimit": null,
+            "PortBindings": {
+                "80/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ],
+            "ReadonlyRootfs": false,
+            "RestartPolicy": {
+                "MaximumRetryCount": 0,
+                "Name": ""
+            },
+            "Runtime": "runc",
+            "SecurityOpt": null,
+            "ShmSize": 67108864,
+            "UTSMode": "",
+            "Ulimits": null,
+            "UsernsMode": "",
+            "VolumeDriver": "",
+            "VolumesFrom": null
+        },
+        "HostnamePath": "/var/lib/docker/containers/dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5/hostname",
+        "HostsPath": "/var/lib/docker/containers/dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5/hosts",
+        "Id": "dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5",
+        "Image": "sha256:bc9a0695f5712dcaaa09a5adc415a3936ccba13fc2587dfd76b1b8aeea3f221c",
+        "LogPath": "/var/lib/docker/containers/dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5/dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5-json.log",
+        "MountLabel": "",
+        "Mounts": [],
+        "Name": "/nginx",
+        "NetworkSettings": {
+            "Bridge": "",
+            "EndpointID": "ba1d817a347d1e35a79af944118a84a2c50aabd4638d838ca467a7c03e704559",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "HairpinMode": false,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "EndpointID": "ba1d817a347d1e35a79af944118a84a2c50aabd4638d838ca467a7c03e704559",
+                    "Gateway": "172.17.0.1",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "IPAMConfig": null,
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "Links": null,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "NetworkID": "e4aa00d804cb5e0c1c1deb4655a5e25a1abf4bb5c57c433b970d6c2a998bbc24"
+                }
+            },
+            "Ports": {
+                "80/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "SandboxID": "3c602c24ce6c5559184ed92c0b21707bd904ad35fe054ebae2da7f87c8d92cab",
+            "SandboxKey": "/var/run/docker/netns/3c602c24ce6c",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null
+        },
+        "Path": "/docker-entrypoint.sh",
+        "Platform": "linux",
+        "ProcessLabel": "",
+        "ResolvConfPath": "/var/lib/docker/containers/dc810f82fafd86ab71fde6e45b7e32b5d5131c32bf79ae638fd8f088a058c1a5/resolv.conf",
+        "RestartCount": 0,
+        "State": {
+            "Dead": false,
+            "Error": "",
+            "ExitCode": 0,
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "OOMKilled": false,
+            "Paused": false,
+            "Pid": 4086,
+            "Restarting": false,
+            "Running": true,
+            "StartedAt": "2020-12-03T14:01:50.444679117Z",
+            "Status": "running"
+        }
+    },
     "gather_subset": [
         "all"
     ],
