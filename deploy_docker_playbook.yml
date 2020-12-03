@@ -1,6 +1,29 @@
 - name: "PLAY - Déploiement images et conteneurs docker"
-  hosts: docker_host
+  hosts: srv01
   become: true
+
+  pre_tasks:
+    - name: Enregistrement de l'IP de srv01
+      set_fact: 
+        docker_host: "{{ ansible_facts['enp0s8']['ipv4']['address'] }}"
 
   roles:
     - docker_deploy
+
+  tasks:
+    - name: ip
+      debug:
+        msg: "{{ docker_host }}"
+        verbosity: 1
+
+    - name: Utilisation du module wait_for + option delegate_to
+      wait_for:
+        host: "{{ docker_host }}"
+        port: 6379
+      delegate_to: manager
+    
+    - name: delegate_to
+      copy:
+        content: "{{ docker_host }}"
+        dest: "/tmp/test_delegate"
+      delegate_to: manager
