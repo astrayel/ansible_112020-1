@@ -1,0 +1,4 @@
+---
+# vars file for roles/apache_0.0.1
+pkg_apache: apache2
+pkg_apache_version: 2.4.29-1ubuntu4.14

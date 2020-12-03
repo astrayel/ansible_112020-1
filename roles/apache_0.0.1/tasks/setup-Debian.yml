@@ -1,0 +1,5 @@
+- name: "Installation package apache"
+  ansible.builtin.apt:
+    name: "{{ pkg_apache }}={{ pkg_apache_version }}"
+    update_cache: "{{ update_cache_policy | d('yes') }}"
+    state: present

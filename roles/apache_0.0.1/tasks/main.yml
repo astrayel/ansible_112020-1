@@ -1,0 +1,15 @@
+---
+# tasks file for roles/apache_0.0.1
+
+- name: Installation apache
+  include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Si mon node n'est pas de type Debian
+  fail:
+    msg: "Role non prévu pour une distri autre que de famille Debian"
+  when: ansible_os_family != 'Debian'
+
+- name: Deploiement virtualhost + site
+  include_tasks: deploy.yml
+  when: deploy_virtualhost is defined and deploy_virtualhost

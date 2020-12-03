@@ -1,0 +1,45 @@
+- name: "Déploiement virtualhost + site"
+  block:
+
+    - name: "Déploiement de la conf virtualhost"
+      template:
+        src: my_virtualhost.conf.j2
+        dest: /etc/apache2/sites-available/{{ appli_name }}.conf
+        owner: root
+        group: root
+        mode: 0644
+           
+    - name: "Activation du virtualhost"
+      command: "a2ensite {{ appli_name }}"
+
+    - name: "Check de la conf apache"
+      command: apache2ctl configtest
+
+    - name: "Desactivation du virtualhost par defaut"
+      command: "a2dissite 000-default.conf"
+      notify:
+        - restart apache
+
+    - name: "Creation de l'arborescence du site"
+      ansible.builtin.file:
+        path: "/var/www/{{ appli_name }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: "Dépose du site index.html"
+      template:
+        src: index.html.j2
+        dest: "/var/www/{{ appli_name }}/index.html"
+        owner: root
+        group: root
+        mode: 0644
+
+  rescue:
+    - name: "Rollingback - restauration du virtualhost par défaut"
+      command: a2ensite 000-default
+    - name: "Rollingback - Suppression du virtualHost perso"
+      command: "a2dissite {{ appli_name }}"
+      notify:
+        - restart apache

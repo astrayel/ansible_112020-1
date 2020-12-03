@@ -1,0 +1,10 @@
+---
+- name: "PLAY deploiement web apache"
+  hosts: webservers
+  become: true
+
+  vars:
+    appli_name: formation
+    deploy_virtualhost: true
+  roles:
+    - apache_0.0.1
