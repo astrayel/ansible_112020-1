@@ -245,3 +245,9 @@ $ ansible-playbook docker_playbook.yml --tags tagged
 
 Ignorer un tag : 
 $ ansible-playbook docker_playbook.yml --tags docker_commun --skip-tags docker_image
+
+
+-------------------------------------------------
+## ANSIBLE DELEGATION
+-------------------------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html
