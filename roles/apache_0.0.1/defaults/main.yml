@@ -1,2 +1,4 @@
 ---
 # defaults file for roles/apache_0.0.1
+
+deploy_virtualhost: false

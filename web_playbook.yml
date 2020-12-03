@@ -6,5 +6,6 @@
   vars:
     appli_name: formation
     deploy_virtualhost: true
+    
   roles:
     - apache_0.0.1
