@@ -4,11 +4,23 @@
 
   tasks:
 
+  # Utilisation de async (timeout) + poll (check fin de task)
   - name: Simulate long running op (15 sec), wait for up to 6 sec, poll every 2 sec
     command: /bin/sleep 15
     async: 6
     poll: 2
     ignore_errors: true
+
+  - name: "On passe à la suite"
+    debug:
+      msg: "On continue !"
+
+  # Utilisation de async (timeout) + poll = 0 (on passe directement à la tasks suivante)
+  # Déclencher des tasks en parallele
+  - name: Simulate long running op, allow to run for 45 sec, fire and forget
+    command: /bin/sleep 15
+    async: 45
+    poll: 0
 
   - name: "On passe à la suite"
     debug:
