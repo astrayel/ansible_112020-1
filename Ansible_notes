@@ -251,3 +251,28 @@ $ ansible-playbook docker_playbook.yml --tags docker_commun --skip-tags docker_i
 ## ANSIBLE DELEGATION
 -------------------------------------------------
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html
+
+
+
+--------------------------------------------------------------------
+## ANSIBLE AWX / TOWER -> Interface graphique de management Ansible
+--------------------------------------------------------------------
+https://github.com/ansible/awx
+https://docs.ansible.com/ansible-tower/index.html
+https://github.com/ansible/awx/blob/devel/INSTALL.md
+
+=> Une des méthode d'installation : Docker
+   1°) => Prérequis : (via docker_playbook.yml)
+           => Python3, Python3-pip
+           => docker engine
+           => docker-compose
+   2°) => Sur serveur AWX : Déploiement Installer AWX manuelle
+          => $ pip3 install ansible
+          => $ source .profile
+          # Clone du dépot officiel AWX
+          => $ git clone https://github.com/ansible/awx.git
+          => $ cd awx/installer/
+          => $ openssl rand -base64 30
+          => Copier la clé dans inventory : secret_key={clé}
+          => $ ansible-playbook -i inventory install.yml --become
+
