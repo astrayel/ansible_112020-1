@@ -258,7 +258,8 @@ $ ansible-playbook docker_playbook.yml --tags docker_commun --skip-tags docker_i
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html
 
 
-
+----------------------------------------------
+## Ansible : tasks asynchrones, parallele
 --------------------------------------------------------------------
 ## ANSIBLE AWX / TOWER -> Interface graphique de management Ansible
 --------------------------------------------------------------------

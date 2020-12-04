@@ -1,0 +1,15 @@
+---
+- name: "PLAY de demo tasks asynchrones"
+  hosts: srv02
+
+  tasks:
+
+  - name: Simulate long running op (15 sec), wait for up to 6 sec, poll every 2 sec
+    command: /bin/sleep 15
+    async: 6
+    poll: 2
+    ignore_errors: true
+
+  - name: "On passe à la suite"
+    debug:
+      msg: "On continue !"
