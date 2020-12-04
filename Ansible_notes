@@ -268,7 +268,7 @@ https://github.com/ansible/awx/blob/devel/INSTALL.md
            => docker-compose
    2°) => Sur serveur AWX : Déploiement Installer AWX manuelle
           => $ pip3 install ansible
-          => $ source .profile
+          => $ source .profile (recharger le PATH)
           # Clone du dépot officiel AWX
           => $ git clone https://github.com/ansible/awx.git
           => $ cd awx/installer/
