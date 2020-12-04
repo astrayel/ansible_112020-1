@@ -273,6 +273,8 @@ https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html
 https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html
 https://github.com/ansible-collections/community.general/tree/main/scripts/inventory
 
+
+
 --------------------------------------------------------------------
 ## ANSIBLE AWX / TOWER -> Interface graphique de management Ansible
 --------------------------------------------------------------------
@@ -294,4 +296,18 @@ https://github.com/ansible/awx/blob/devel/INSTALL.md
           => $ openssl rand -base64 30
           => Copier la clé dans inventory : secret_key={clé}
           => $ ansible-playbook -i inventory install.yml --become
+
+   3°) Installation de packages pip supplémentaire dans le conteneur awx_task
+          => $ sudo docker container exec -it awx_task /bin/bash
+          =>  /var/lib/awx/venv/awx/bin/pip install --upgrade pip
+          => /var/lib/awx/venv/awx/bin/pip install --upgrade setuptools
+          => /var/lib/awx/venv/awx/bin/pip install docker
+          => /var/lib/awx/venv/awx/bin/pip install docker-compose
+
+  
+
+
+=> Utilisation :
+    1°) Créer les informations d'identification (connexion au machines, connexion au git, connexion à vault)
+    2°) Créer un projet => lien vers un projet ansible git ou un répertoire etc...
 
