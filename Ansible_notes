@@ -262,7 +262,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html
 ## Ansible : tasks asynchrones, parallele
 ----------------------------------------------
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html#asynchronous-playbook-tasks
-
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html
 
 
 

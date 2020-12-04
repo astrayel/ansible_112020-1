@@ -10,18 +10,55 @@
     async: 6
     poll: 2
     ignore_errors: true
-
   - name: "On passe à la suite"
     debug:
       msg: "On continue !"
 
   # Utilisation de async (timeout) + poll = 0 (on passe directement à la tasks suivante)
   # Déclencher des tasks en parallele
+  # On ne maitrise plus le résultat final
   - name: Simulate long running op, allow to run for 45 sec, fire and forget
     command: /bin/sleep 15
     async: 45
     poll: 0
-
   - name: "On passe à la suite"
     debug:
       msg: "On continue !"
+
+  # Utilisation de async (timeout) + poll = 0 (on passe directement à la tasks suivante)
+  # Déclencher des tasks en parallele
+  # Enregistrement des jobs ID pour pouvoir contrôle plus tard le status
+  - name: Provisionnement d'instances cloud
+    command: "sleep {{ item }}"
+    loop:
+      - 30
+      - 15
+      - 30
+      - 15
+    register: output_cloud
+    async: 60
+    poll: 0
+    tags:
+      - cloud
+
+  - name: "Task configuration DNS"
+    debug:
+      msg: "Configuration des entrées DNS"
+
+  - name: "Task configuration DNS"
+    debug:
+      msg: "COnfiguration Firewall"
+
+  - name: "Analyse job async"
+    debug:
+      var: output_cloud
+      verbosity: 1
+  
+  - name: Analyse du status du provisionnement des instance cloud avant poursuite des installation
+    async_status:
+      jid: "{{ item.ansible_job_id }}"
+    register: job_result
+    until: job_result.finished
+    retries: 60 # Nbre de tentatives
+    delay: 1 # check toutes les 2 secondes
+    loop: "{{ output_cloud.results }}"
