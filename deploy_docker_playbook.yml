@@ -22,8 +22,12 @@
         port: 6379
       delegate_to: manager
     
-    - name: delegate_to
-      copy:
-        content: "{{ docker_host }}"
-        dest: "/tmp/test_delegate"
+    - name: "Utilisation du lineinfile + mode delegate_to pour modifier le fichier ansible.cfg sur maanager"
+      lineinfile:
+        path: "{{ playbook_dir }}/ansible.cfg"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop:
+        - { regexp: '^fact_caching =', line: "fact_caching = redis"}
+        - { regexp: '^fact_caching_connection', line: "fact_caching_connection = {{ docker_host }}:6379" }
       delegate_to: manager
