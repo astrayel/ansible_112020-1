@@ -310,4 +310,5 @@ https://github.com/ansible/awx/blob/devel/INSTALL.md
 => Utilisation :
     1°) Créer les informations d'identification (connexion au machines, connexion au git, connexion à vault)
     2°) Créer un projet => lien vers un projet ansible git ou un répertoire etc...
+    3°) Manager l'inventaire awx
 

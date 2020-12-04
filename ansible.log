@@ -72,3 +72,72 @@
 2020-12-04 13:30:32,107 p=8431 u=vagrant n=ansible | changed: [srv02] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '327844373936.8793', 'results_file': '/home/vagrant/.ansible_async/327844373936.8793', 'changed': True, 'failed': False, 'item': 15, 'ansible_loop_var': 'item'})
 2020-12-04 13:30:32,176 p=8431 u=vagrant n=ansible | PLAY RECAP *******************************************************************************************************
 2020-12-04 13:30:32,177 p=8431 u=vagrant n=ansible | srv02                      : ok=8    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2020-12-04 15:11:55,915 p=8753 u=vagrant n=ansible | all:
+  children:
+    awx:
+      hosts:
+        awx01:
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_ssh_host: 172.28.128.75
+          couleur: yellow
+          docker_compose_version: 1.27.4
+          sudogrp: sudo
+    docker_host:
+      hosts:
+        awx01: {}
+        srv01:
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_ssh_host: 172.28.128.69
+          couleur: yellow
+          docker_compose_version: 1.27.4
+          dockers:
+            alpine:
+              container_name: my_alpine
+              container_state: started
+              image_state: present
+              tag: latest
+            redis:
+              container_name: my_redis
+              container_state: started
+              image_state: present
+              published_ports: 6379:6379
+              tag: 6.0.9-alpine
+          sudogrp: sudo
+    haproxy:
+      hosts:
+        srv03:
+          _interfaceip: eth1
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_ssh_host: 172.28.128.71
+          grp_web: webservers
+          key_status: absent
+          password_strategy: always
+          sudogrp: wheel
+          var1: Serveurs Linux
+    linux:
+      children:
+        centos:
+          hosts:
+            srv03: {}
+        debian:
+          hosts:
+            awx01: {}
+            srv01: {}
+            srv02:
+              ansible_python_interpreter: /usr/bin/python3
+              ansible_ssh_host: 172.28.128.70
+              couleur: green
+              sudogrp: sudo
+    ungrouped:
+      hosts:
+        manager:
+          ansible_connection: local
+          ansible_python_interpreter: /usr/bin/python3
+    webservers:
+      children:
+        debian:
+          hosts:
+            awx01: {}
+            srv01: {}
+            srv02: {}
+
