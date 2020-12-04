@@ -1,5 +1,7 @@
 Doc Ansible :
 https://docs.ansible.com/
+https://docs.ansible.com/ansible/2.3/playbooks_best_practices.html
+https://www.ansible.com/hubfs/2018_Content/Ansible%20Best%20Practices%20Roles%20&%20Modules.pdf
 
 Installation classique apt (sans se soucier de la version)
 $ sudo apt update
