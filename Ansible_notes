@@ -266,7 +266,12 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_async.html#asynchronous-playbook-tasks
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html
 
-
+----------------------------------------------
+## Ansible DYNAMIC INVENTORY
+----------------------------------------------
+https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html
+https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html
+https://github.com/ansible-collections/community.general/tree/main/scripts/inventory
 
 --------------------------------------------------------------------
 ## ANSIBLE AWX / TOWER -> Interface graphique de management Ansible

@@ -1,0 +1,38 @@
+2020-12-04 13:26:13,845 p=8151 u=vagrant n=ansible | PLAY [PLAY de demo tasks asynchrones] ****************************************************************************
+2020-12-04 13:26:13,883 p=8151 u=vagrant n=ansible | TASK [Gathering Facts] *******************************************************************************************
+2020-12-04 13:26:16,168 p=8151 u=vagrant n=ansible | ok: [srv02]
+2020-12-04 13:26:16,213 p=8151 u=vagrant n=ansible | TASK [Simulate long running op (15 sec), wait for up to 6 sec, poll every 2 sec] *********************************
+2020-12-04 13:26:24,217 p=8151 u=vagrant n=ansible | fatal: [srv02]: FAILED! => {"changed": false, "msg": "async task did not complete within the requested time - 6s"}
+2020-12-04 13:26:24,218 p=8151 u=vagrant n=ansible | ...ignoring
+2020-12-04 13:26:24,242 p=8151 u=vagrant n=ansible | TASK [On passe à la suite] ***************************************************************************************
+2020-12-04 13:26:24,266 p=8151 u=vagrant n=ansible | ok: [srv02] => {
+    "msg": "On continue !"
+}
+2020-12-04 13:26:24,295 p=8151 u=vagrant n=ansible | TASK [Simulate long running op, allow to run for 45 sec, fire and forget] ****************************************
+2020-12-04 13:26:24,862 p=8151 u=vagrant n=ansible | changed: [srv02]
+2020-12-04 13:26:24,884 p=8151 u=vagrant n=ansible | TASK [On passe à la suite] ***************************************************************************************
+2020-12-04 13:26:24,909 p=8151 u=vagrant n=ansible | ok: [srv02] => {
+    "msg": "On continue !"
+}
+2020-12-04 13:26:24,945 p=8151 u=vagrant n=ansible | TASK [Provisionnement d'instances cloud] *************************************************************************
+2020-12-04 13:26:25,491 p=8151 u=vagrant n=ansible | changed: [srv02] => (item=30)
+2020-12-04 13:26:25,995 p=8151 u=vagrant n=ansible | changed: [srv02] => (item=15)
+2020-12-04 13:26:26,581 p=8151 u=vagrant n=ansible | changed: [srv02] => (item=30)
+2020-12-04 13:26:27,121 p=8151 u=vagrant n=ansible | changed: [srv02] => (item=15)
+2020-12-04 13:26:27,161 p=8151 u=vagrant n=ansible | TASK [Task configuration DNS] ************************************************************************************
+2020-12-04 13:26:27,186 p=8151 u=vagrant n=ansible | ok: [srv02] => {
+    "msg": "Configuration des entrées DNS"
+}
+2020-12-04 13:26:27,223 p=8151 u=vagrant n=ansible | TASK [Task configuration DNS] ************************************************************************************
+2020-12-04 13:26:27,247 p=8151 u=vagrant n=ansible | ok: [srv02] => {
+    "msg": "COnfiguration Firewall"
+}
+2020-12-04 13:26:27,282 p=8151 u=vagrant n=ansible | TASK [Analyse job async] *****************************************************************************************
+2020-12-04 13:26:27,310 p=8151 u=vagrant n=ansible | skipping: [srv02]
+2020-12-04 13:26:27,339 p=8151 u=vagrant n=ansible | TASK [Analyse du status du provisionnement des instance cloud avant poursuite des installation] ******************
+2020-12-04 13:26:56,136 p=8151 u=vagrant n=ansible | changed: [srv02] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '670413103112.7915', 'results_file': '/home/vagrant/.ansible_async/670413103112.7915', 'changed': True, 'failed': False, 'item': 30, 'ansible_loop_var': 'item'})
+2020-12-04 13:26:56,547 p=8151 u=vagrant n=ansible | changed: [srv02] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '288080307348.7941', 'results_file': '/home/vagrant/.ansible_async/288080307348.7941', 'changed': True, 'failed': False, 'item': 15, 'ansible_loop_var': 'item'})
+2020-12-04 13:26:56,892 p=8151 u=vagrant n=ansible | changed: [srv02] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '328669162499.7967', 'results_file': '/home/vagrant/.ansible_async/328669162499.7967', 'changed': True, 'failed': False, 'item': 30, 'ansible_loop_var': 'item'})
+2020-12-04 13:26:57,278 p=8151 u=vagrant n=ansible | changed: [srv02] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '866623014983.7993', 'results_file': '/home/vagrant/.ansible_async/866623014983.7993', 'changed': True, 'failed': False, 'item': 15, 'ansible_loop_var': 'item'})
+2020-12-04 13:26:57,325 p=8151 u=vagrant n=ansible | PLAY RECAP *******************************************************************************************************
+2020-12-04 13:26:57,326 p=8151 u=vagrant n=ansible | srv02                      : ok=9    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
