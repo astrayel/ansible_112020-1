@@ -43,6 +43,11 @@ ansible --version
 Quitter environnement :
 deactivate
 
+-----------------------------------------------------------------------
+## Gestion des prérequis librairies/packages pip nécessaire au projets
+-----------------------------------------------------------------------
+=> Création d'un fichier requirements.txt qui contient les packages pip requis pour le projet Ansible
+=> Déclenchement de l'installation : $ pip3 install -r requirements.txt
 
 ----------------------------------
 ## GIT , HOOKS
