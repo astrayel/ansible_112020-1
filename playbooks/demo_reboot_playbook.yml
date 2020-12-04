@@ -1,0 +1,15 @@
+---
+
+- name: "PLAY - REBOOT"
+  hosts: centos
+
+  tasks:
+
+    - name: "Reboot serveur {{ ansible_hostname }}"
+      ansible.builtin.reboot:
+        reboot_timeout: 3600
+      become: true
+
+    - name: "Recuperation du serveur"
+      debug:
+        msg: "Serveur UP on continue"
